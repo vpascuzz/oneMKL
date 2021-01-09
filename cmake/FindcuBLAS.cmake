@@ -18,6 +18,7 @@
 #=========================================================================
 
 find_package(CUDA 10.0 REQUIRED)
+enable_language(CUDA)
 find_path(CUBLAS_INCLUDE_DIR "cublas_v2.h" HINTS ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
 get_filename_component(SYCL_BINARY_DIR ${CMAKE_CXX_COMPILER} DIRECTORY)
 # the OpenCL include file from cuda is opencl 1.1 and it is not compatible with DPC++
