@@ -67,6 +67,8 @@ public:
                         reinterpret_cast<float*>(ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniform, status, engine_, r_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -84,6 +86,8 @@ public:
                         reinterpret_cast<double*>(ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniformDouble, status, engine_, r_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -102,6 +106,8 @@ public:
                         ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerate, status, engine_, ib_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -119,6 +125,8 @@ public:
                         reinterpret_cast<float*>(ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniform, status, engine_, r_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -136,6 +144,8 @@ public:
                         reinterpret_cast<double*>(ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniformDouble, status, engine_, r_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -154,6 +164,8 @@ public:
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateNormal, status, engine_, r_ptr, n, distr.mean(),
                                 distr.stddev());
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -171,6 +183,8 @@ public:
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateNormalDouble, status, engine_, r_ptr, n, distr.mean(),
                                 distr.stddev());
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -204,6 +218,8 @@ public:
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateLogNormal, status, engine_, r_ptr, n, distr.m(),
                                 distr.s());
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -221,6 +237,8 @@ public:
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateLogNormalDouble, status, engine_, r_ptr, n, distr.m(),
                                 distr.s());
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -280,6 +298,8 @@ public:
                         ih.get_native_mem<cl::sycl::backend::cuda>(acc));
                     curandStatus_t status;
                     CURAND_CALL(curandGenerate, status, engine_, r_ptr, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -297,6 +317,8 @@ public:
                 cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniform, status, engine_, r, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -313,6 +335,8 @@ public:
                 cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniformDouble, status, engine_, r, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -331,6 +355,8 @@ public:
                 cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                     curandStatus_t status;
                     CURAND_CALL(curandGenerate, status, engine_, ib, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -347,6 +373,8 @@ public:
                 cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniform, status, engine_, r, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -363,6 +391,8 @@ public:
                 cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                     curandStatus_t status;
                     CURAND_CALL(curandGenerateUniformDouble, status, engine_, r, n);
+                    cudaError_t err;
+                    CUDA_CALL(cudaDeviceSynchronize, err);
                 });
             })
             .wait_and_throw();
@@ -380,6 +410,8 @@ public:
                 curandStatus_t status;
                 CURAND_CALL(curandGenerateNormal, status, engine_, r, n, distr.mean(),
                             distr.stddev());
+                cudaError_t err;
+                CUDA_CALL(cudaDeviceSynchronize, err);
             });
         });
     }
@@ -395,6 +427,8 @@ public:
                 curandStatus_t status;
                 CURAND_CALL(curandGenerateNormalDouble, status, engine_, r, n, distr.mean(),
                             distr.stddev());
+                cudaError_t err;
+                CUDA_CALL(cudaDeviceSynchronize, err);
             });
         });
     }
@@ -429,6 +463,8 @@ public:
             cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                 curandStatus_t status;
                 CURAND_CALL(curandGenerateLogNormal, status, engine_, r, n, distr.m(), distr.s());
+                cudaError_t err;
+                CUDA_CALL(cudaDeviceSynchronize, err);
             });
         });
     }
@@ -444,6 +480,8 @@ public:
                 curandStatus_t status;
                 CURAND_CALL(curandGenerateLogNormalDouble, status, engine_, r, n, distr.m(),
                             distr.s());
+                cudaError_t err;
+                CUDA_CALL(cudaDeviceSynchronize, err);
             });
         });
     }
@@ -512,6 +550,8 @@ public:
             cgh.codeplay_host_task([=](cl::sycl::interop_handle ih) {
                 curandStatus_t status;
                 CURAND_CALL(curandGenerate, status, engine_, r, n);
+                cudaError_t err;
+                CUDA_CALL(cudaDeviceSynchronize, err);
             });
         });
     }
